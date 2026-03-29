@@ -18,7 +18,7 @@ export default function ItemDetail() {
     async function fetchItem() {
       if (!id) return;
       try {
-        const res = await fetch(`http://localhost:5000/api/${type}/${id}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/${type}/${id}`);
         if (!res.ok) {
           setItem(null);
           return;
@@ -62,7 +62,7 @@ export default function ItemDetail() {
     
     try {
       const targetId = selectedMatch ? selectedMatch.id : id;
-      const res = await fetch('http://localhost:5000/api/claim/create', {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/claim/create`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -99,7 +99,7 @@ export default function ItemDetail() {
       const token = localStorage.getItem('token');
       if (!token || !id) return;
       try {
-        const res = await fetch(`http://localhost:5000/api/user/dashboard`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/dashboard`, {
           headers: { 'x-auth-token': token }
         });
         const data = await res.json();
@@ -119,7 +119,7 @@ export default function ItemDetail() {
     if (!userClaim?.id) return;
     const token = localStorage.getItem('token');
     try {
-      const res = await fetch(`http://localhost:5000/api/claim/confirm-receipt/${userClaim.id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/claim/confirm-receipt/${userClaim.id}`, {
         method: 'POST',
         headers: { 'x-auth-token': token || '' }
       });

@@ -28,7 +28,7 @@ export default function ReportFound() {
         return;
       }
 
-      const res = await fetch('http://localhost:5000/api/found/create', {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/found/create`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

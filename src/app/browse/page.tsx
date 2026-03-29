@@ -11,8 +11,8 @@ export default function BrowseItems() {
     async function fetchData() {
       try {
         const [lostRes, foundRes] = await Promise.all([
-          fetch('http://localhost:5000/api/lost'),
-          fetch('http://localhost:5000/api/found')
+          fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/lost`),
+          fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/found`)
         ]);
         
         const lostData = await lostRes.json();

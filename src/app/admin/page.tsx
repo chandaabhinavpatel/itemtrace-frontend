@@ -17,7 +17,7 @@ export default function AdminDashboard() {
         return;
       }
 
-      const res = await fetch('http://localhost:5000/api/admin/stats', {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/stats`, {
         headers: { 'x-auth-token': token }
       });
       
@@ -47,7 +47,7 @@ export default function AdminDashboard() {
     const token = localStorage.getItem('token');
     if (action === 'Approve') {
       try {
-         await fetch('http://localhost:5000/api/admin/verify-found', {
+         await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/verify-found`, {
            method: 'POST',
            headers: { 'Content-Type': 'application/json', 'x-auth-token': token || '' },
            body: JSON.stringify({ id })
@@ -63,7 +63,7 @@ export default function AdminDashboard() {
     const token = localStorage.getItem('token');
     const endpoint = action === 'Approve' ? 'approve-claim' : 'reject-claim';
     try {
-       await fetch(`http://localhost:5000/api/admin/${endpoint}`, {
+       await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/${endpoint}`, {
          method: 'POST',
          headers: { 'Content-Type': 'application/json', 'x-auth-token': token || '' },
          body: JSON.stringify({ claimId })

@@ -28,7 +28,7 @@ export default function ReportLost() {
         return;
       }
 
-      const res = await fetch('http://localhost:5000/api/lost/create', {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/lost/create`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

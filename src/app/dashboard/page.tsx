@@ -17,7 +17,7 @@ export default function Dashboard() {
           return;
         }
 
-        const res = await fetch('http://localhost:5000/api/user/dashboard', {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/dashboard`, {
           headers: { 'x-auth-token': token }
         });
         
@@ -227,14 +227,14 @@ export default function Dashboard() {
                           
                           try {
                             // Confirm Receipt
-                            const confirmRes = await fetch(`http://localhost:5000/api/claims/confirm-receipt/${claim.id}`, {
+                            const confirmRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/claims/confirm-receipt/${claim.id}`, {
                               method: 'POST',
                               headers: { 'x-auth-token': token || '' }
                             });
                             
                             if (confirmRes.ok) {
                               // Submit Feedback
-                              await fetch('http://localhost:5000/api/claims/feedback', {
+                              await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/claims/feedback`, {
                                 method: 'POST',
                                 headers: { 
                                   'Content-Type': 'application/json',
